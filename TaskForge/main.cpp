@@ -5,8 +5,9 @@ int main() {
 
     TaskMNGR TaskManager;
     
-    TaskManager.addTask();
     TaskManager.listTasks();
+    std::cout << TaskManager.editTask(2);
+    TaskManager.addTask();
 
     return 0;
 }

@@ -1,6 +1,7 @@
 #include "../include/Task.h"
 #include <vector>
 #include <string>
+#include <iostream>
 
 Task::Task(int id, const std::string& description)
     : id(id), description(description), priority(0), dueDate("") {
@@ -8,6 +9,7 @@ Task::Task(int id, const std::string& description)
 
 // ID getter
 int Task::getId() const {
+    std::cout << id;
     return id;
 }
 

@@ -85,14 +85,6 @@ void TaskMNGR::addTask() {
     Color("Enter description of new task:\n> ", "bright_green");
     std::getline(std::cin, description);
 
-    Color("Enter up to 3 tags (comma-separated):\n> ", "bright_green");
-    std::getline(std::cin, input);
-    std::istringstream iss(input);
-    while (std::getline(iss, tag, ',')) {
-        if (!tag.empty()) tags.push_back(tag);
-        if (tags.size() == 3) break;
-    }
-
     Color("Enter due date of new task:\n> ", "bright_green");
     std::getline(std::cin, dueDate);
 
@@ -103,6 +95,14 @@ void TaskMNGR::addTask() {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     std::cin.ignore();
+
+    Color("Enter up to 3 tags (comma-separated):\n> ", "bright_green");
+    std::getline(std::cin, input);
+    std::istringstream iss(input);
+    while (std::getline(iss, tag, ',')) {
+        if (!tag.empty()) tags.push_back(tag);
+        if (tags.size() == 3) break;
+    }
 
     int newId = 1;
     if (jsonFile.contains("tasks")) {
@@ -210,7 +210,8 @@ int TaskMNGR::editTask(int id) {
     string tempStr, tag;
     std::vector<std::string> tags;
 
-    for (auto& task : tasks) {
+    for (auto task : tasks) {
+        cout << task.getId();
         if (task.getId() == id && !found) {
             Color("Task with ID ", "green");
             Color(id, "bright_green");
@@ -248,15 +249,14 @@ int TaskMNGR::editTask(int id) {
                 istringstream iss(tempStr);
                 while (getline(iss, tag, ',')) {
                     if (!tag.empty()) tags.push_back(tag);
-                    if (tags.size() == 3);
-                    break;
+                    if (tags.size() == 3) break;
                 }
                 task.setTags(tags);
-                break;
+                return 0;
             }
         }
         else if (found) {
-            return 0;
+            return 1;
         }
     }
 }
