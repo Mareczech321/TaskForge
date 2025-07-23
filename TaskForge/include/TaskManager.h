@@ -12,6 +12,7 @@ class TaskMNGR {
 		int editTask(int id);
 		int deleteTask(int id);
 		void listTasks();
+		void loadTasksFromFile(const std::string& fullPath);
 
 	private:
 		std::vector<Task> tasks;

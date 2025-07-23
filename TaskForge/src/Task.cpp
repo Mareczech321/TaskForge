@@ -3,13 +3,13 @@
 #include <string>
 #include <iostream>
 
-Task::Task(int id, const std::string& description)
-    : id(id), description(description), priority(0), dueDate("") {
+Task::Task(int id, const std::string& description) {
+    this->id = id;
+    this->description = description;
 }
 
 // ID getter
 int Task::getId() const {
-    std::cout << id;
     return id;
 }
 
@@ -66,9 +66,12 @@ nlohmann::json Task::toJson() const {
 
 // Deserialize Task object from JSON - chatgpt
 Task Task::fromJson(const nlohmann::json& j) {
-    Task t(j["id"], j["Description"]);
-    t.setTags(j["tags"].get<std::vector<std::string>>());
-    t.setDueDate(j["Due date"]);
-    t.setPriority(j["Priority"]);
-    return t;
+    Task task(j.at("id").get<int>(), j.at("Description").get<std::string>());
+    if (j.contains("Due date"))
+        task.setDueDate(j["Due date"].get<std::string>());
+    if (j.contains("Priority"))
+        task.setPriority(j["Priority"].get<int>());
+    if (j.contains("tags") && j["tags"].is_array())
+        task.setTags(j["tags"].get<std::vector<std::string>>());
+    return task;
 }
