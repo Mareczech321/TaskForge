@@ -253,10 +253,12 @@ int TaskMNGR::editTask(int id) {
                 }
                 task.setTags(tags);
                 break;
+            }
         }
-    }else if (found) {
+        else if (found) {
             return 0;
         }
+    }
 }
 
 bool endsWith(const string& fullString, const string& ending){ //https://www.geeksforgeeks.org/cpp/check-if-string-ends-substring-in-cpp/
