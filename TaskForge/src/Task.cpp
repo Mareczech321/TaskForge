@@ -69,6 +69,8 @@ Task Task::fromJson(const nlohmann::json& j) {
     Task task(j.at("id").get<int>(), j.at("Description").get<std::string>());
     if (j.contains("Due date"))
         task.setDueDate(j["Due date"].get<std::string>());
+    if (j.contains("Due Date"))
+        task.setDueDate(j["Due Date"].get<std::string>());
     if (j.contains("Priority"))
         task.setPriority(j["Priority"].get<int>());
     if (j.contains("tags") && j["tags"].is_array())

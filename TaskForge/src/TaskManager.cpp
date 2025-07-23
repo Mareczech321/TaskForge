@@ -284,6 +284,7 @@ int TaskMNGR::editTask(int id) {
                 Color("[3] Priority\n", "cyan");
                 Color("[4] Tags\n> ", "bright_green");
                 cin >> temp;
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
 
             switch (temp) {
