@@ -9,8 +9,8 @@ class TaskMNGR {
 		TaskMNGR();
 
 		void addTask();
-		void editTask(int id);
-		void deleteTask(int id);
+		int editTask(int id);
+		int deleteTask(int id);
 		void listTasks();
 
 	private:
