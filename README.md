@@ -1,8 +1,8 @@
-# 🚀 TaskForge Development Plan (3–4 Weeks)
+# 🚀 TaskForge Development Plan (3–4 Days)
 
 ---
 
-## **Week 1 — Core Data Model & Storage**
+## **Day 1 — Core Data Model & Storage**
 
 ### 🎯 Goals
 - Design `Task` and `TaskManager` classes.
@@ -32,7 +32,7 @@
 
 ---
 
-## **Week 2 — Command Line Interface (CLI)**
+## **Day 2 — Command Line Interface (CLI)**
 
 ### 🎯 Goals
 - Parse user input to interact with tasks.
@@ -55,7 +55,7 @@
 
 ---
 
-## **Week 3 — Advanced Features & Polishing**
+## **Day 3 — Advanced Features & Polishing**
 
 ### 🎯 Goals
 - Export tasks to CSV or text.
@@ -75,7 +75,7 @@
 
 ---
 
-## **Week 4 (Optional) — Bonus Features & Deployment**
+## **Day 4 (Optional) — Bonus Features & Deployment**
 
 ### 🎯 Goals
 - Sync tasks via Dropbox/Google Drive (manual method).
