@@ -6,8 +6,9 @@ int main() {
     TaskMNGR TaskManager;
     
     TaskManager.listTasks();
-    TaskManager.editTask(10);
+    TaskManager.editTask(1);
     TaskManager.addTask();
+    TaskManager.deleteTask(2);
 
     return 0;
 }

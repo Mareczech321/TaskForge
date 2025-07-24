@@ -77,3 +77,11 @@ Task Task::fromJson(const nlohmann::json& j) {
         task.setTags(j["tags"].get<std::vector<std::string>>());
     return task;
 }
+
+bool Task::operator==(const Task& other) const {
+    return id == other.id &&
+        description == other.description &&
+        dueDate == other.dueDate &&
+        priority == other.priority &&
+        tags == other.tags;
+}

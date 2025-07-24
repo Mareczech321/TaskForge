@@ -12,6 +12,7 @@
 #include <filesystem>
 #include <sstream>
 #include <limits>
+#include <tuple>
 
 using json = nlohmann::json;
 namespace fs = filesystem;
@@ -25,61 +26,16 @@ TaskMNGR::TaskMNGR() {
 void TaskMNGR::addTask() {
     string fileName, folderPath, confirm, input, description, dueDate, tag;
     vector<string> tags;
-    json jsonFile;
     int priority = 0;
 
-    Color("Is the file in the same folder as this .exe file? (Y/N):\n> ", "red");
-    getline(cin, confirm);
-
-    if (confirm == "Y" || confirm == "y") {
-        Color("Proceeding...\n", "white");
-        folderPath = fs::current_path().string();
-    }
-    else {
-        Color("Specify the path:\n> ", "yellow");
-        getline(cin, folderPath);
-    }
-
-    Color("Enter the file name:\n> ", "blue");
-    getline(cin, fileName);
-    if (!endsWith(fileName, ".json")) {
-        fileName += ".json";
-    }
-
-    fs::path fullPath = fs::path(folderPath) / fileName;
-    string path_string = fullPath.string();
-
-    Color("Is this the right file path?\n", "bright_cyan");
-    Color(path_string, "bright_blue");
-    Color(" (Y/N):\n> ","bright_cyan");
-    getline(cin, confirm);
-
-    if (confirm == "N" || confirm == "n") {
-        Color("Cancelling...\n", "red");
+    auto [tasks, fullPath, jsonFile] = loadFile();
+    if (tasks.empty() || fullPath.empty()) {
         return;
     }
 
     if (!fs::exists(fullPath)) {
         Color("File does not exist.\nCreating a new one!\n", "red");
         fstream newFile(fileName, ios::out);
-    }
-
-    ifstream fileIn(fullPath);
-    if (fileIn) {
-        try {
-            fileIn >> jsonFile;
-        }
-        catch (const json::parse_error& e) {
-            Color("JSON parse error: ", "red", true);
-            Color(e.what(), "red", true);
-            Color("\n", "red", true);
-            Color("Creating new empty JSON structure.\n", "red", true);
-            jsonFile["tasks"] = json::array();
-        }
-    }
-    else {
-        Color("Failed to open file for reading.\n", "red", true);
-        return;
     }
 
     Color("Enter description of new task:\n> ", "bright_green");
@@ -131,59 +87,10 @@ void TaskMNGR::addTask() {
 }
 
 void TaskMNGR::listTasks() {
-    json jsonFile;
     string folderPath, fileName, confirm;
 
-    Color("Is the file in the same folder as this .exe file? (Y/N):\n> ", "magenta");
-    getline(cin, confirm);
-
-    if (confirm == "Y" || confirm == "y") {
-        Color("Proceeding...\n", "cyan");
-        folderPath = fs::current_path().string();
-    }
-    else {
-        Color("Specify the path:\n> ", "red");
-        getline(cin, folderPath);
-    }
-
-    Color("Enter the file name:\n> ", "bright_green");
-    getline(cin, fileName);
-    if (!endsWith(fileName, ".json")) {
-        fileName += ".json";
-    }
-
-    fs::path fullPath = fs::path(folderPath) / fileName;
-    string path_string = fullPath.string();
-
-    Color("Is this the right file path?\n", "yellow");
-    Color(path_string, "bright_yellow"); 
-    Color("\n(Y/N):\n> ", "yellow");
-    getline(cin, confirm);
-    if (confirm == "N" || confirm == "n") {
-        Color("Cancelling...\n", "red");
-        return;
-    }
-    
-    ifstream fileIn(fullPath);
-
-    if (fileIn) {
-        try {
-            fileIn >> jsonFile;
-        }
-        catch (const json::parse_error& e) {
-            Color("JSON parse error: ", "red", true);
-            Color(e.what(), "red", true);
-            Color("\n", "red", true);
-            return;
-        }
-    }
-    else {
-        Color("Could not open the file.\n", "red", true);
-        return;
-    }
-
-    if (!jsonFile.contains("tasks") || !jsonFile["tasks"].is_array()) {
-        Color("No tasks found.", "red");
+    auto [tasks, fullPath, jsonFile] = loadFile();
+    if (tasks.empty() || fullPath.empty()) {
         return;
     }
 
@@ -208,65 +115,11 @@ int TaskMNGR::editTask(int id) {
     bool found = false;
     int temp = 0, temp2;
     string tempStr, tag, confirm, folderPath, fileName;
-    json jsonFile;
     vector<string> tags;
 
-    Color("Is the file in the same folder as this .exe file? (Y/N):\n> ", "red");
-    getline(cin, confirm);
-
-    if (confirm == "Y" || confirm == "y") {
-        Color("Proceeding...\n", "white");
-        folderPath = fs::current_path().string();
-    }
-    else {
-        Color("Specify the path:\n> ", "yellow");
-        getline(cin, folderPath);
-    }
-
-    Color("Enter the file name:\n> ", "blue");
-    getline(cin, fileName);
-    if (!endsWith(fileName, ".json")) {
-        fileName += ".json";
-    }
-
-    fs::path fullPath = fs::path(folderPath) / fileName;
-    string path_string = fullPath.string();
-
-    Color("Is this the right file path?\n", "bright_cyan");
-    Color(path_string, "bright_blue");
-    Color(" (Y/N):\n> ", "bright_cyan");
-    getline(cin, confirm);
-
-    if (confirm == "N" || confirm == "n") {
-        Color("Cancelling...\n", "red");
+    auto [tasks, fullPath, jsonFile] = loadFile();
+    if (tasks.empty() || fullPath.empty()) {
         return 1;
-    }
-
-    if (!fs::exists(fullPath)) {
-        Color("File does not exist.\n", "red");
-    }
-
-    ifstream fileIn(fullPath);
-    if (fileIn) {
-        try {
-            fileIn >> jsonFile;
-        }
-        catch (const json::parse_error& e) {
-            Color("JSON parse error: ", "red", true);
-            Color(e.what(), "red", true);
-            Color("\n", "red", true);
-        }
-    }
-    else {
-        Color("Failed to open file for writing.\n", "red", true);
-        return 1;
-    }
-
-    if (jsonFile.contains("tasks") && jsonFile["tasks"].is_array()) {
-        for (const auto& jsonTask : jsonFile["tasks"]) {
-            Task task = Task::fromJson(jsonTask);
-            tasks.push_back(task);
-        }
     }
 
     for (auto& task : tasks) {
@@ -333,6 +186,116 @@ int TaskMNGR::editTask(int id) {
         return 1;
     }
     
+}
+
+int TaskMNGR::deleteTask(int id) {
+    auto [tasks, fullPath, jsonFile] = loadFile();
+    if (tasks.empty() || fullPath.empty() || jsonFile.empty()) {
+        return 1;
+    }
+
+    if (!jsonFile.contains("tasks") || !jsonFile["tasks"].is_array()) {
+        Color("No tasks found in JSON.\n", "red");
+        return 1;
+    }
+
+    auto it = std::remove_if(tasks.begin(), tasks.end(), [id](const Task& task) {
+        return task.getId() == id;
+        });
+
+    if (it == tasks.end()) {
+        Color("Task with ID ", "red");
+        Color(id, "bright_red");
+        Color(" not found.\n", "red");
+        return 1;
+    }
+
+    tasks.erase(it, tasks.end());
+    Color("Task deleted successfully.\n", "green");
+    
+    jsonFile["tasks"].clear();
+    for (const auto& task : tasks) {
+        jsonFile["tasks"].push_back(task.toJson());
+    }
+
+    // Write the updated JSON back to the file
+    std::ofstream fileOut(fullPath);
+    if (fileOut) {
+        fileOut << std::setw(4) << jsonFile << "\n";
+        Color("File updated successfully.\n", "green");
+    }
+    else {
+        Color("Failed to write changes to file.\n", "red");
+        return 1;
+    }
+
+    return 0;
+}
+
+std::tuple<std::vector<Task>, std::filesystem::path, json> TaskMNGR::loadFile() {
+    string confirm, folderPath, fileName;
+    json jsonFile;
+    vector<Task> tasks;
+
+    Color("Is the file in the same folder as this .exe file? (Y/N):\n> ", "red");
+    getline(cin, confirm);
+
+    if (confirm == "Y" || confirm == "y") {
+        Color("Proceeding...\n", "white");
+        folderPath = fs::current_path().string();
+    }
+    else {
+        Color("Specify the path:\n> ", "yellow");
+        getline(cin, folderPath);
+    }
+
+    Color("Enter the file name:\n> ", "blue");
+    getline(cin, fileName);
+    if (!endsWith(fileName, ".json")) {
+        fileName += ".json";
+    }
+
+    fs::path fullPath = fs::path(folderPath) / fileName;
+    string path_string = fullPath.string();
+
+    Color("Is this the right file path?\n", "bright_cyan");
+    Color(path_string, "bright_blue");
+    Color(" (Y/N):\n> ", "bright_cyan");
+    getline(cin, confirm);
+
+    if (confirm == "N" || confirm == "n") {
+        Color("Cancelling...\n", "red");
+        return {};
+    }
+
+    if (!fs::exists(fullPath)) {
+        Color("File does not exist.\n", "red");
+    }
+
+    ifstream fileIn(fullPath);
+    if (fileIn) {
+        try {
+            fileIn >> jsonFile;
+        }
+        catch (const json::parse_error& e) {
+            Color("JSON parse error: ", "red", true);
+            Color(e.what(), "red", true);
+            Color("\n", "red", true);
+        }
+    }
+    else {
+        Color("Failed to open file.\n", "red", true);
+        return {};
+    }
+
+    if (jsonFile.contains("tasks") && jsonFile["tasks"].is_array()) {
+        for (const auto& jsonTask : jsonFile["tasks"]) {
+            Task task = Task::fromJson(jsonTask);
+            tasks.push_back(task);
+        }
+        
+    }
+    return {tasks, fullPath, jsonFile};
 }
 
 bool endsWith(const string& fullString, const string& ending){ //https://www.geeksforgeeks.org/cpp/check-if-string-ends-substring-in-cpp/

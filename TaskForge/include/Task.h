@@ -37,6 +37,9 @@ class Task {
 		nlohmann::json toJson() const;
 		static Task fromJson(const nlohmann::json& j);
 
+		bool operator==(const Task& other) const;
+
+
 
 	private:
 		int id;

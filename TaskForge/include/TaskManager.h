@@ -3,6 +3,8 @@
 
 #include <vector>
 #include "Task.h"
+#include <tuple>
+#include "../src/json.hpp"
 
 class TaskMNGR {
 	public:
@@ -12,8 +14,8 @@ class TaskMNGR {
 		int editTask(int id);
 		int deleteTask(int id);
 		void listTasks();
-		void loadTasksFromFile(const std::string& fullPath);
-
+		std::tuple<std::vector<Task>, std::filesystem::path, nlohmann::json> loadFile();
+    
 	private:
 		std::vector<Task> tasks;
 };
