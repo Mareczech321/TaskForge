@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\CLIHandler.cpp" />
+    <ClCompile Include="src\commands.cpp" />
     <ClCompile Include="src\Task.cpp" />
     <ClCompile Include="src\TaskManager.cpp" />
   </ItemGroup>
@@ -138,6 +139,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CLIHandler.h" />
+    <ClInclude Include="include\colors.h" />
+    <ClInclude Include="include\commands.h" />
     <ClInclude Include="include\Task.h" />
     <ClInclude Include="include\TaskManager.h" />
     <ClInclude Include="src\json.hpp" />

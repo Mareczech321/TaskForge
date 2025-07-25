@@ -1,14 +1,10 @@
 #include <iostream>
 #include "./include/TaskManager.h"
+#include "./include/commands.h"
 
 int main() {
 
-    TaskMNGR TaskManager;
+    Commands();
     
-    TaskManager.listTasks();
-    TaskManager.editTask(1);
-    TaskManager.addTask();
-    TaskManager.deleteTask(2);
-
     return 0;
 }

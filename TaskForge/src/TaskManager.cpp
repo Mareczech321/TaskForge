@@ -3,7 +3,7 @@
 #include "../include/TaskManager.h"
 #include "../include/Task.h"
 #include "json.hpp"
-#include "../include/colors.cpp"
+#include "../include/colors.h"
 
 #include <string>
 #include <vector>
@@ -14,10 +14,14 @@
 #include <limits>
 #include <tuple>
 
+using namespace std;
 using json = nlohmann::json;
 namespace fs = filesystem;
+fstream gConfig;
 
 bool endsWith(const string& fullString, const string& ending);
+bool isFileEmpty(std::fstream& file);
+
 
 TaskMNGR::TaskMNGR() {
     
@@ -27,14 +31,32 @@ void TaskMNGR::addTask() {
     string fileName, folderPath, confirm, input, description, dueDate, tag;
     vector<string> tags;
     int priority = 0;
+	json jsonFile;
+	fs::path fullPath;
+    vector<Task> tasks;
 
-    auto [tasks, fullPath, jsonFile] = loadFile();
-    if (tasks.empty() || fullPath.empty()) {
-        return;
+    if (isFileEmpty("config.cfg")) {
+        std::tie(tasks, fullPath, jsonFile) = loadFile();
+        if (tasks.empty() || fullPath.empty()) {
+            Color("No tasks found or file path is invalid.\n", "red", true);
+            return;
+        }
+    }else{
+        
+        folderPath = getFolderPathFromConfig();
+        if (folderPath.empty()) {
+            Color("Failed to read from config file.\n", "red");
+            return;
+        }
+
+        std::tie(tasks, fullPath, jsonFile) = loadFile(folderPath);
+        if (tasks.empty() || fullPath.empty()) {
+            Color("No tasks found or file path is invalid.\n", "red", true);
+            return;
+        }
     }
-
     if (!fs::exists(fullPath)) {
-        Color("File does not exist.\nCreating a new one!\n", "red");
+        Color("File does not exist.\nCreating a new one!\n", "red", true);
         fstream newFile(fileName, ios::out);
     }
 
@@ -88,16 +110,35 @@ void TaskMNGR::addTask() {
 
 void TaskMNGR::listTasks() {
     string folderPath, fileName, confirm;
+    json jsonFile;
+    fs::path fullPath;
+    vector<Task> tasks;
 
-    auto [tasks, fullPath, jsonFile] = loadFile();
+    if (isFileEmpty("config.cfg")) {
+        std::tie(tasks, fullPath, jsonFile) = loadFile();
+    }
+    else {
+        folderPath = getFolderPathFromConfig();
+        if (folderPath.empty()) {
+            Color("Failed to read from config file.\n", "red");
+            return;
+        }
+
+        std::tie(tasks, fullPath, jsonFile) = loadFile(folderPath);
+    }
+
     if (tasks.empty() || fullPath.empty()) {
+        Color("No tasks found.\n", "red", true);
+        return;
+    }
+
+    if (!fs::exists(fullPath)) {
+        Color("File does not exist.\n", "red", true);
         return;
     }
 
     Color("------------------------\n", "yellow");
-    for (const auto& jsonTask : jsonFile["tasks"]) {
-        Task task = Task::fromJson(jsonTask);
-
+    for (const auto& task : tasks) {
         cout << "\033[31mID: \033[37m" << task.getId() << '\n';
         cout << "\033[35mDescription: \033[37m" << task.getDescription() << "\n";
         cout << "\033[35mDue date: \033[37m" << task.getDueDate() << "\n";
@@ -114,11 +155,34 @@ void TaskMNGR::listTasks() {
 int TaskMNGR::editTask(int id) {
     bool found = false;
     int temp = 0, temp2;
-    string tempStr, tag, confirm, folderPath, fileName;
+    string tempStr, tag, folderPath, fileName;
     vector<string> tags;
+	fs::path fullPath;
+	json jsonFile;
+    vector<Task> tasks;
 
-    auto [tasks, fullPath, jsonFile] = loadFile();
+    if (isFileEmpty("config.cfg")) {
+        std::tie(tasks, fullPath, jsonFile) = loadFile();
+        if (tasks.empty() || fullPath.empty()) {
+            return 1;
+        }
+    }else {   
+        folderPath = getFolderPathFromConfig();
+        if (folderPath.empty()) {
+            Color("Failed to read from config file.\n", "red");
+            return 1;
+        }
+
+        std::tie(tasks, fullPath, jsonFile) = loadFile(folderPath);
+    }
+
     if (tasks.empty() || fullPath.empty()) {
+        Color("No tasks found.\n", "red", true);
+        return 1;
+    }
+
+    if (!fs::exists(fullPath)) {
+        Color("File does not exist.\n", "red", true);
         return 1;
     }
 
@@ -136,40 +200,64 @@ int TaskMNGR::editTask(int id) {
                 Color("[2] Due Date\n", "magenta");
                 Color("[3] Priority\n", "cyan");
                 Color("[4] Tags\n> ", "bright_green");
-                cin >> temp;
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                string choiceInput;
+                getline(cin, choiceInput);
+                try {
+                    temp = stoi(choiceInput);
+                }
+                catch (...) {
+                    temp = 0;
+                }
             }
 
             switch (temp) {
             case 1:
                 Color("Enter new description:\n> ", "magenta");
-                cin >> tempStr;
+                getline(cin, tempStr);
                 task.setDescription(tempStr);
                 break;
+
             case 2:
                 Color("Enter new due date:\n> ", "magenta");
                 getline(cin, tempStr);
                 task.setDueDate(tempStr);
                 break;
+
             case 3:
                 Color("Enter new priority:\n> ", "cyan");
-                cin >> temp2;
-                task.setPriority(temp2);
-                break;
-            case 4:
-                Color("Enter new tags:\n> ", "bright_green");
                 getline(cin, tempStr);
-                istringstream iss(tempStr);
-                while (getline(iss, tag, ',')) {
-                    if (!tag.empty()) tags.push_back(tag);
-                    if (tags.size() == 3) break;
+                try {
+                    temp2 = stoi(tempStr);
+                    task.setPriority(temp2);
                 }
-                task.setTags(tags);
+                catch (...) {
+                    Color("Invalid priority value.\n", "red");
+                }
+                break;
+
+            case 4:
+                Color("Enter new tags (comma-separated, max 3):\n> ", "bright_green");
+                getline(cin, tempStr);
+                tags.clear();
+                {
+                    istringstream iss(tempStr);
+                    while (getline(iss, tag, ',')) {
+                        if (!tag.empty()) tags.push_back(tag);
+                        if (tags.size() == 3) break;
+                    }
+                    task.setTags(tags);
+                }
                 break;
             }
         }
     }
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    if (!found) {
+        Color("No task with that ID was found.\n", "red");
+        return 1;
+    }
+
     jsonFile["tasks"] = json::array();
     for (const auto& task : tasks) {
         jsonFile["tasks"].push_back(task.toJson());
@@ -185,17 +273,36 @@ int TaskMNGR::editTask(int id) {
         Color("Failed to write changes to file.\n", "red");
         return 1;
     }
-    
 }
 
 int TaskMNGR::deleteTask(int id) {
-    auto [tasks, fullPath, jsonFile] = loadFile();
-    if (tasks.empty() || fullPath.empty() || jsonFile.empty()) {
+	string folderPath, fileName;
+	fs::path fullPath;
+	json jsonFile;
+    vector<Task> tasks;
+
+    if (isFileEmpty("config.cfg")) {
+        std::tie(tasks, fullPath, jsonFile) = loadFile();
+
+    }
+    else {
+        
+        folderPath = getFolderPathFromConfig();
+        if (folderPath.empty()) {
+            Color("Failed to read from config file.\n", "red");
+            return 1;
+        }
+
+        std::tie(tasks, fullPath, jsonFile) = loadFile(folderPath);
+    }
+
+    if (tasks.empty() || fullPath.empty()) {
+        Color("No tasks found.\n", "red", true);
         return 1;
     }
 
-    if (!jsonFile.contains("tasks") || !jsonFile["tasks"].is_array()) {
-        Color("No tasks found in JSON.\n", "red");
+    if (!fs::exists(fullPath)) {
+        Color("File does not exist.\n", "red", true);
         return 1;
     }
 
@@ -232,41 +339,45 @@ int TaskMNGR::deleteTask(int id) {
     return 0;
 }
 
-std::tuple<std::vector<Task>, std::filesystem::path, json> TaskMNGR::loadFile() {
+std::tuple<std::vector<Task>, std::filesystem::path, json> TaskMNGR::loadFile(fs::path folderPath2) {
     string confirm, folderPath, fileName;
     json jsonFile;
     vector<Task> tasks;
 
-    Color("Is the file in the same folder as this .exe file? (Y/N):\n> ", "red");
-    getline(cin, confirm);
+    if (isFileEmpty("config.cfg")) {
+        Color("Is the file in the same folder as this .exe file? (Y/N):\n> ", "red");
+        getline(cin, confirm);
 
-    if (confirm == "Y" || confirm == "y") {
-        Color("Proceeding...\n", "white");
-        folderPath = fs::current_path().string();
-    }
-    else {
-        Color("Specify the path:\n> ", "yellow");
-        getline(cin, folderPath);
-    }
+        if (confirm == "Y" || confirm == "y") {
+            Color("Proceeding...\n", "white");
+            folderPath = fs::current_path().string();
+        }
+        else {
+            Color("Specify the path:\n> ", "yellow");
+            getline(cin, folderPath);
+        }
 
-    Color("Enter the file name:\n> ", "blue");
-    getline(cin, fileName);
-    if (!endsWith(fileName, ".json")) {
-        fileName += ".json";
-    }
+        Color("Enter the file name:\n> ", "blue");
+        getline(cin, fileName);
+        if (!endsWith(fileName, ".json")) {
+            fileName += ".json";
+        }
+    }else {
+        
+        folderPath = getFolderPathFromConfig();
+        if (folderPath.empty()) {
+            Color("Failed to read from config file.\n", "red");
+            return {};
+        }
 
+        Color("Enter the file name:\n> ", "blue");
+        getline(cin, fileName);
+        if (!endsWith(fileName, ".json")) {
+            fileName += ".json";
+        }
+    }
     fs::path fullPath = fs::path(folderPath) / fileName;
     string path_string = fullPath.string();
-
-    Color("Is this the right file path?\n", "bright_cyan");
-    Color(path_string, "bright_blue");
-    Color(" (Y/N):\n> ", "bright_cyan");
-    getline(cin, confirm);
-
-    if (confirm == "N" || confirm == "n") {
-        Color("Cancelling...\n", "red");
-        return {};
-    }
 
     if (!fs::exists(fullPath)) {
         Color("File does not exist.\n", "red");
@@ -288,14 +399,44 @@ std::tuple<std::vector<Task>, std::filesystem::path, json> TaskMNGR::loadFile() 
         return {};
     }
 
-    if (jsonFile.contains("tasks") && jsonFile["tasks"].is_array()) {
-        for (const auto& jsonTask : jsonFile["tasks"]) {
+    for (const auto& jsonTask : jsonFile["tasks"]) {
+        try {
             Task task = Task::fromJson(jsonTask);
             tasks.push_back(task);
         }
-        
+        catch (const std::exception& e) {
+            std::cerr << "Error parsing task: " << e.what() << "\n";
+        }
     }
+
     return {tasks, fullPath, jsonFile};
+}
+
+fstream TaskMNGR::saveFile(fs::path folderPath){
+    std::string fileName = "config.cfg";
+    fs::path defaultPath = fs::current_path() / fileName;
+
+    std::ofstream gConfig(defaultPath);
+    if (!gConfig.is_open()) {
+        Color("Failed to open config file for writing.\n", "red");
+        return std::fstream();
+    }
+
+    gConfig << folderPath.string();
+    gConfig.close();
+    return std::fstream();
+}
+
+bool isFileEmpty(std::fstream& file) {
+    std::streampos currentPos = file.tellg();
+    
+    file.seekg(0, std::ios::end);
+    
+    bool empty = (file.tellg() == 0);
+
+    file.seekg(currentPos);
+
+    return empty;
 }
 
 bool endsWith(const string& fullString, const string& ending){ //https://www.geeksforgeeks.org/cpp/check-if-string-ends-substring-in-cpp/
@@ -306,4 +447,18 @@ bool endsWith(const string& fullString, const string& ending){ //https://www.gee
         - ending.size(),
         ending.size(), ending)
         == 0;
+}
+
+std::string TaskMNGR::getFolderPathFromConfig() {
+    std::ifstream cfg("config.cfg");
+    std::string path;
+    if (cfg && std::getline(cfg, path)) {
+        return path;
+    }
+    return "";
+}
+
+bool TaskMNGR::isFileEmpty(const std::string& filename) {
+    std::ifstream file(filename, std::ios::ate);
+    return file.tellg() == 0;
 }

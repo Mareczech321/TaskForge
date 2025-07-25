@@ -1,11 +1,17 @@
-#include <iostream>
+#pragma once
+
+#ifndef COLORS_H
+#define COLORS_H
+
 #include <string>
+#include <iostream>
 #include <unordered_map>
 #include <windows.h>
+
 using namespace std;
 
 // Enable ANSI color support on Windows CMD
-void enableVirtualTerminal() {
+inline void enableVirtualTerminal() {
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;
     GetConsoleMode(hOut, &dwMode);
@@ -14,7 +20,8 @@ void enableVirtualTerminal() {
 }
 
 // Print text in a specified color
-void Color(const auto& text, const string& color, bool warning = false) {
+template <typename T>
+void Color(const T& text, const std::string& color, bool warning = false) {
     static unordered_map<string, string> colorMap = {
         {"black",   "\033[30m"},
         {"red",     "\033[31m"},
@@ -37,14 +44,18 @@ void Color(const auto& text, const string& color, bool warning = false) {
 
     if (colorMap.count(color)) {
         colorCode = colorMap[color];
-    } else {
+    }
+    else {
         cerr << "[Warning] Unknown color '" << color << "', using default." << endl;
     }
 
     if (warning) {
         cerr << colorCode << text << "\033[0m"; // reset color at the end
-    } else {
+    }
+    else {
         cout << colorCode << text << "\033[0m"; // reset color at the end
     }
     cout << colorMap["white"];
 }
+
+#endif
