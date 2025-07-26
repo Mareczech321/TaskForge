@@ -74,7 +74,7 @@ void Commands() {
 			Color("  del <id>  - Delete a task by ID\n", "red");
 			Color("  search <term | type (id, desc, due, priority, tag)> - Search for tasks\n", "cyan");
 			Color("  exit   - Exit TaskForge\n", "bright_red");
-			Color("  path   - Set the file path for tasks\n", "blue");
+			Color("  path <folder path / reset>   - Sets / resets the file path for tasks\n", "blue");
 			break;
 
 		case add:
@@ -145,6 +145,8 @@ void Commands() {
 				Color("Current folder path: ", "green");
 				Color(folderPath, "bright_green");
 				Color("\n", "green");
+			}else if (tokens[1] == "reset") {
+				TaskManager.resetFilePath();
 			}
 			else{
 				Color("Setting folder path to: ", "green");

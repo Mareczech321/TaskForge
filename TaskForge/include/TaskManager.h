@@ -25,6 +25,7 @@ class TaskMNGR {
 		std::fstream saveFile(std::filesystem::path folderPath = std::filesystem::current_path());
 		std::string getFolderPathFromConfig();
 		bool isFileEmpty(const std::string& filename);
+		std::fstream resetFilePath();
 
 	private:
 		std::vector<Task> tasks;

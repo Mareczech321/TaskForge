@@ -427,6 +427,21 @@ fstream TaskMNGR::saveFile(fs::path folderPath){
     return std::fstream();
 }
 
+fstream TaskMNGR::resetFilePath() {
+    std::string fileName = "config.cfg";
+    fs::path defaultPath = fs::current_path() / fileName;
+
+    std::ofstream gConfig(defaultPath);
+    if (!gConfig.is_open()) {
+        Color("Failed to open config file for writing.\n", "red");
+        return std::fstream();
+    }
+
+    gConfig << "";
+	gConfig.close();
+    return std::fstream();
+}
+
 bool isFileEmpty(std::fstream& file) {
     std::streampos currentPos = file.tellg();
     
