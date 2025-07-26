@@ -26,6 +26,7 @@ class TaskMNGR {
 		std::string getFolderPathFromConfig();
 		bool isFileEmpty(const std::string& filename);
 		std::fstream resetFilePath();
+		void searchTasks(const std::string& searchTerm, std::string& type);
 
 	private:
 		std::vector<Task> tasks;

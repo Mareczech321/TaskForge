@@ -72,9 +72,9 @@ void Commands() {
 			Color("  list   - List all tasks\n", "yellow");
 			Color("  edit <id> - Edit a task by ID\n", "magenta");
 			Color("  del <id>  - Delete a task by ID\n", "red");
+			Color("  path <folder path / reset>   - Sets / resets the default file path for tasks\n", "blue");
 			Color("  search <term | type (id, desc, due, priority, tag)> - Search for tasks\n", "cyan");
 			Color("  exit   - Exit TaskForge\n", "bright_red");
-			Color("  path <folder path / reset>   - Sets / resets the file path for tasks\n", "blue");
 			break;
 
 		case add:
@@ -116,18 +116,14 @@ void Commands() {
 			break;
 
 		case locate:
-			if (tokens.size() < 2 || tokens.size() > 2) {
-				Color("Please provide a search term.\n", "red");
+			if (tokens.size() < 3 || tokens.size() > 3) {
+				Color("Please provide a search term and type.\n", "red");
 				break;
 			}
 			{
-				string searchTerm;
-				for (size_t i = 1; i < tokens.size(); ++i) {
-					searchTerm += tokens[i] + " ";
-				}
 				Color("Searching for tasks matching: ", "cyan");
-				cout << searchTerm << endl;
-				// TODO: Implement actual search functionality
+				cout << tokens[1] << endl;
+				TaskManager.searchTasks(tokens[1], tokens[2]);
 			}
 			break;
 

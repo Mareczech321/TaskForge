@@ -339,6 +339,122 @@ int TaskMNGR::deleteTask(int id) {
     return 0;
 }
 
+void TaskMNGR::searchTasks(const std::string& searchTerm, std::string& type) {
+    string confirm, folderPath, fileName;
+    json jsonFile;
+    fs::path fullPath;
+    vector<Task> tasks;
+
+    if (isFileEmpty("config.cfg")) {
+        std::tie(tasks, fullPath, jsonFile) = loadFile();
+    }
+    else {
+        folderPath = getFolderPathFromConfig();
+        if (folderPath.empty()) {
+            Color("Failed to read from config file.\n", "red");
+            return;
+        }
+
+        std::tie(tasks, fullPath, jsonFile) = loadFile(folderPath);
+    }
+
+    if (tasks.empty() || fullPath.empty()) {
+        Color("No tasks found.\n", "red", true);
+        return;
+    }
+
+    if (!fs::exists(fullPath)) {
+        Color("File does not exist.\n", "red", true);
+        return;
+    }
+
+    if (type == "desc") {
+		type = "Description";
+    }
+    else if (type == "due") {
+		type = "Due date";
+    }
+    else if (type == "tag") {
+        type = "tags";
+    }
+    else if (type == "priority") {
+		type = "Priority";
+    }
+
+    for (const auto& task : jsonFile["tasks"]) {
+        if (type == "id") {
+            for (const auto& task2 : tasks) {
+                if (task2.getId() == std::stoi(searchTerm)) {
+                    cout << "\033[31mID: \033[37m" << task2.getId() << '\n';
+                    cout << "\033[35mDescription: \033[37m" << task2.getDescription() << "\n";
+                    cout << "\033[35mDue date: \033[37m" << task2.getDueDate() << "\n";
+                    cout << "\033[36mPriority: \033[37m" << task2.getPriority() << "\n";
+                    cout << "\033[92mTags: ";
+                    for (const auto& tag : task2.getTags()) {
+                        Color(tag, "white");
+                        Color(" | ", "red");
+                    }
+                    Color("\n------------------------\n", "yellow");
+                    return;
+                }
+            }
+        }
+        else if (type == "Priority") {
+            for (const auto& task2 : tasks) {
+                if (task2.getPriority() == std::stoi(searchTerm)) {
+                    cout << "\033[31mID: \033[37m" << task2.getId() << '\n';
+                    cout << "\033[35mDescription: \033[37m" << task2.getDescription() << "\n";
+                    cout << "\033[35mDue date: \033[37m" << task2.getDueDate() << "\n";
+                    cout << "\033[36mPriority: \033[37m" << task2.getPriority() << "\n";
+                    cout << "\033[92mTags: ";
+                    for (const auto& tag : task2.getTags()) {
+                        Color(tag, "white");
+                        Color(" | ", "red");
+                    }
+                    Color("\n------------------------\n", "yellow");
+                    
+                }
+            }return;
+        }
+        else if (type == "tags") {
+            for (const auto& task2 : tasks) {
+                auto lTags = task2.getTags();
+                for (int i = 0; i < lTags.size(); i++){                    
+                    if (lTags[i] == searchTerm) {
+                        cout << "\033[31mID: \033[37m" << task2.getId() << '\n';
+                        cout << "\033[35mDescription: \033[37m" << task2.getDescription() << "\n";
+                        cout << "\033[35mDue date: \033[37m" << task2.getDueDate() << "\n";
+                        cout << "\033[36mPriority: \033[37m" << task2.getPriority() << "\n";
+                        cout << "\033[92mTags: ";
+                        for (const auto& tag : task2.getTags()) {
+                            Color(tag, "white");
+                            Color(" | ", "red");
+                        }
+                        Color("\n------------------------\n", "yellow");
+                    }
+                }
+            }return;
+        }
+        else if (task[type] == searchTerm) {
+             for (const auto& task2 : tasks) {
+                if (task2.getId() == task["id"]){
+                    cout << "\033[31mID: \033[37m" << task2.getId() << '\n';
+                    cout << "\033[35mDescription: \033[37m" << task2.getDescription() << "\n";
+                    cout << "\033[35mDue date: \033[37m" << task2.getDueDate() << "\n";
+                    cout << "\033[36mPriority: \033[37m" << task2.getPriority() << "\n";
+                    cout << "\033[92mTags: ";
+                    for (const auto& tag : task2.getTags()) {
+                        Color(tag, "white");
+                        Color(" | ", "red");
+                    }
+                    Color("\n------------------------\n", "yellow");
+                }
+            }
+        }
+    }
+    return;
+}
+
 std::tuple<std::vector<Task>, std::filesystem::path, json> TaskMNGR::loadFile(fs::path folderPath2) {
     string confirm, folderPath, fileName;
     json jsonFile;
