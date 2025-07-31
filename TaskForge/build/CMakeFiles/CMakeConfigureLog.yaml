@@ -49,6 +49,7 @@ events:
         - "C:\\Users\\marek\\AppData\\Local\\spicetify"
         - "C:\\Users\\marek\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\msys64\\ucrt64\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/TaskForge"
   -
     kind: "message-v1"
     backtrace:
@@ -59,15 +60,15 @@ events:
     message: |
       Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
       Compiler:  
-      Build flags: 
+      Build flags: /DWIN32;/D_WINDOWS;/W3
       Id flags:  
       
       The output was:
       0
       MSBuild version 17.14.18+a338add32 for .NET Framework
-      Build started 7/31/2025 8:46:52 PM.
+      Build started 7/31/2025 8:59:13 PM.
       
-      Project "C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      Project "C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
@@ -80,7 +81,7 @@ events:
         CMakeCCompilerId.c
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
-        CompilerIdC.vcxproj -> C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdC\\CompilerIdC.exe
+        CompilerIdC.vcxproj -> C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdC\\CompilerIdC.exe
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
         :VCEnd
@@ -88,13 +89,13 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
-      Done Building Project "C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
+      Done Building Project "C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:01.22
+      Time Elapsed 00:00:01.25
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -102,7 +103,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
       
       The C compiler identification is MSVC, found in:
-        C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/4.1.0-rc2/CompilerIdC/CompilerIdC.exe
+        C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/4.1.0-rc2/CompilerIdC/CompilerIdC.exe
       
   -
     kind: "find-v1"
@@ -160,6 +161,7 @@ events:
         - "C:\\Users\\marek\\AppData\\Local\\spicetify"
         - "C:\\Users\\marek\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\msys64\\ucrt64\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/TaskForge"
   -
     kind: "find-v1"
     backtrace:
@@ -260,212 +262,7 @@ events:
         - "C:\\Users\\marek\\AppData\\Local\\spicetify"
         - "C:\\Users\\marek\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_LINKER"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "link"
-    candidate_directories:
-      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
-      - "C:/Program Files/Common Files/Oracle/Java/javapath/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
-      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/marek/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/marek/AppData/Local/spicetify/"
-      - "C:/Users/marek/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/msys64/ucrt64/bin/"
-    searched_directories:
-      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/link.com"
-    found: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/link.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
-        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\marek\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\marek\\AppData\\Local\\spicetify"
-        - "C:\\Users\\marek\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_MT"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "mt"
-    candidate_directories:
-      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
-      - "C:/Program Files/Common Files/Oracle/Java/javapath/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
-      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/marek/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/marek/AppData/Local/spicetify/"
-      - "C:/Users/marek/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/msys64/ucrt64/bin/"
-    searched_directories:
-      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/mt.com"
-      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/mt.exe"
-      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/mt"
-      - "C:/Program Files/Common Files/Oracle/Java/javapath/mt.com"
-      - "C:/Program Files/Common Files/Oracle/Java/javapath/mt.exe"
-      - "C:/Program Files/Common Files/Oracle/Java/javapath/mt"
-      - "C:/Windows/System32/mt.com"
-      - "C:/Windows/System32/mt.exe"
-      - "C:/Windows/System32/mt"
-      - "C:/Windows/mt.com"
-      - "C:/Windows/mt.exe"
-      - "C:/Windows/mt"
-      - "C:/Windows/System32/wbem/mt.com"
-      - "C:/Windows/System32/wbem/mt.exe"
-      - "C:/Windows/System32/wbem/mt"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt"
-      - "C:/Windows/System32/OpenSSH/mt.com"
-      - "C:/Windows/System32/OpenSSH/mt.exe"
-      - "C:/Windows/System32/OpenSSH/mt"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/mt.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/mt.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/mt"
-      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt.com"
-      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt.exe"
-      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt"
-      - "C:/Program Files/CMake/bin/mt.com"
-      - "C:/Program Files/CMake/bin/mt.exe"
-      - "C:/Program Files/CMake/bin/mt"
-      - "C:/Users/marek/AppData/Local/Microsoft/WindowsApps/mt.com"
-      - "C:/Users/marek/AppData/Local/Microsoft/WindowsApps/mt.exe"
-      - "C:/Users/marek/AppData/Local/Microsoft/WindowsApps/mt"
-      - "C:/Users/marek/AppData/Local/spicetify/mt.com"
-      - "C:/Users/marek/AppData/Local/spicetify/mt.exe"
-      - "C:/Users/marek/AppData/Local/spicetify/mt"
-      - "C:/Users/marek/AppData/Local/Programs/Microsoft VS Code/bin/mt.com"
-      - "C:/Users/marek/AppData/Local/Programs/Microsoft VS Code/bin/mt.exe"
-      - "C:/Users/marek/AppData/Local/Programs/Microsoft VS Code/bin/mt"
-      - "C:/msys64/ucrt64/bin/mt.com"
-      - "C:/msys64/ucrt64/bin/mt.exe"
-      - "C:/msys64/ucrt64/bin/mt"
-    found: false
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
-        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\marek\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\marek\\AppData\\Local\\spicetify"
-        - "C:\\Users\\marek\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_AR"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "lib"
-    candidate_directories:
-      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
-      - "C:/Program Files/Common Files/Oracle/Java/javapath/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
-      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/marek/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/marek/AppData/Local/spicetify/"
-      - "C:/Users/marek/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/msys64/ucrt64/bin/"
-    searched_directories:
-      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lib.com"
-    found: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lib.exe"
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
-        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\marek\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\marek\\AppData\\Local\\spicetify"
-        - "C:\\Users\\marek\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\msys64\\ucrt64\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/TaskForge"
   -
     kind: "find-v1"
     backtrace:
@@ -507,6 +304,7 @@ events:
         - "C:\\Users\\marek\\AppData\\Local\\spicetify"
         - "C:\\Users\\marek\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\msys64\\ucrt64\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/TaskForge"
   -
     kind: "message-v1"
     backtrace:
@@ -517,15 +315,15 @@ events:
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
       Compiler:  
-      Build flags: 
+      Build flags: /DWIN32;/D_WINDOWS;/W3;/GR;/EHsc
       Id flags:  
       
       The output was:
       0
       MSBuild version 17.14.18+a338add32 for .NET Framework
-      Build started 7/31/2025 8:46:54 PM.
+      Build started 7/31/2025 8:59:15 PM.
       
-      Project "C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      Project "C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
@@ -538,7 +336,7 @@ events:
         CMakeCXXCompilerId.cpp
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
-        CompilerIdCXX.vcxproj -> C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdCXX\\CompilerIdCXX.exe
+        CompilerIdCXX.vcxproj -> C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdCXX\\CompilerIdCXX.exe
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
         :VCEnd
@@ -546,13 +344,13 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
-      Done Building Project "C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      Done Building Project "C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\4.1.0-rc2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:01.20
+      Time Elapsed 00:00:01.21
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -560,7 +358,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
       
       The CXX compiler identification is MSVC, found in:
-        C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/4.1.0-rc2/CompilerIdCXX/CompilerIdCXX.exe
+        C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/4.1.0-rc2/CompilerIdCXX/CompilerIdCXX.exe
       
   -
     kind: "find-v1"
@@ -662,157 +460,7 @@ events:
         - "C:\\Users\\marek\\AppData\\Local\\spicetify"
         - "C:\\Users\\marek\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\msys64\\ucrt64\\bin"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineRCCompiler.cmake:40 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Platform/Windows-MSVC.cmake:573 (enable_language)"
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Platform/Windows-MSVC.cmake:546 (__windows_compiler_msvc_enable_rc)"
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Platform/Windows-MSVC-C.cmake:5 (__windows_compiler_msvc)"
-      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeCInformation.cmake:48 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_RC_COMPILER"
-    description: "RC compiler"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: true
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "rc"
-    candidate_directories:
-      - "C:/Program Files/Common Files/Oracle/Java/javapath/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
-      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Users/marek/AppData/Local/Microsoft/WindowsApps/"
-      - "C:/Users/marek/AppData/Local/spicetify/"
-      - "C:/Users/marek/AppData/Local/Programs/Microsoft VS Code/bin/"
-      - "C:/msys64/ucrt64/bin/"
-      - "C:/Program Files/bin/"
-      - "C:/Program Files/sbin/"
-      - "C:/Program Files/"
-      - "C:/Program Files (x86)/bin/"
-      - "C:/Program Files (x86)/sbin/"
-      - "C:/Program Files (x86)/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Program Files/CMake/sbin/"
-      - "C:/Program Files/CMake/"
-      - "C:/Program Files (x86)/TaskForge/bin/"
-      - "C:/Program Files (x86)/TaskForge/sbin/"
-      - "C:/Program Files (x86)/TaskForge/"
-    searched_directories:
-      - "C:/Program Files/Common Files/Oracle/Java/javapath/rc.com"
-      - "C:/Program Files/Common Files/Oracle/Java/javapath/rc.exe"
-      - "C:/Program Files/Common Files/Oracle/Java/javapath/rc"
-      - "C:/Windows/System32/rc.com"
-      - "C:/Windows/System32/rc.exe"
-      - "C:/Windows/System32/rc"
-      - "C:/Windows/rc.com"
-      - "C:/Windows/rc.exe"
-      - "C:/Windows/rc"
-      - "C:/Windows/System32/wbem/rc.com"
-      - "C:/Windows/System32/wbem/rc.exe"
-      - "C:/Windows/System32/wbem/rc"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc"
-      - "C:/Windows/System32/OpenSSH/rc.com"
-      - "C:/Windows/System32/OpenSSH/rc.exe"
-      - "C:/Windows/System32/OpenSSH/rc"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/rc.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/rc.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/rc"
-      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc.com"
-      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc.exe"
-      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc"
-      - "C:/Program Files/CMake/bin/rc.com"
-      - "C:/Program Files/CMake/bin/rc.exe"
-      - "C:/Program Files/CMake/bin/rc"
-      - "C:/Users/marek/AppData/Local/Microsoft/WindowsApps/rc.com"
-      - "C:/Users/marek/AppData/Local/Microsoft/WindowsApps/rc.exe"
-      - "C:/Users/marek/AppData/Local/Microsoft/WindowsApps/rc"
-      - "C:/Users/marek/AppData/Local/spicetify/rc.com"
-      - "C:/Users/marek/AppData/Local/spicetify/rc.exe"
-      - "C:/Users/marek/AppData/Local/spicetify/rc"
-      - "C:/Users/marek/AppData/Local/Programs/Microsoft VS Code/bin/rc.com"
-      - "C:/Users/marek/AppData/Local/Programs/Microsoft VS Code/bin/rc.exe"
-      - "C:/Users/marek/AppData/Local/Programs/Microsoft VS Code/bin/rc"
-      - "C:/msys64/ucrt64/bin/rc.com"
-      - "C:/msys64/ucrt64/bin/rc.exe"
-      - "C:/msys64/ucrt64/bin/rc"
-      - "C:/Program Files/bin/rc.com"
-      - "C:/Program Files/bin/rc.exe"
-      - "C:/Program Files/bin/rc"
-      - "C:/Program Files/sbin/rc.com"
-      - "C:/Program Files/sbin/rc.exe"
-      - "C:/Program Files/sbin/rc"
-      - "C:/Program Files/rc.com"
-      - "C:/Program Files/rc.exe"
-      - "C:/Program Files/rc"
-      - "C:/Program Files (x86)/bin/rc.com"
-      - "C:/Program Files (x86)/bin/rc.exe"
-      - "C:/Program Files (x86)/bin/rc"
-      - "C:/Program Files (x86)/sbin/rc.com"
-      - "C:/Program Files (x86)/sbin/rc.exe"
-      - "C:/Program Files (x86)/sbin/rc"
-      - "C:/Program Files (x86)/rc.com"
-      - "C:/Program Files (x86)/rc.exe"
-      - "C:/Program Files (x86)/rc"
-      - "C:/Program Files/CMake/bin/rc.com"
-      - "C:/Program Files/CMake/bin/rc.exe"
-      - "C:/Program Files/CMake/bin/rc"
-      - "C:/Program Files/CMake/sbin/rc.com"
-      - "C:/Program Files/CMake/sbin/rc.exe"
-      - "C:/Program Files/CMake/sbin/rc"
-      - "C:/Program Files/CMake/rc.com"
-      - "C:/Program Files/CMake/rc.exe"
-      - "C:/Program Files/CMake/rc"
-      - "C:/Program Files (x86)/TaskForge/bin/rc.com"
-      - "C:/Program Files (x86)/TaskForge/bin/rc.exe"
-      - "C:/Program Files (x86)/TaskForge/bin/rc"
-      - "C:/Program Files (x86)/TaskForge/sbin/rc.com"
-      - "C:/Program Files (x86)/TaskForge/sbin/rc.exe"
-      - "C:/Program Files (x86)/TaskForge/sbin/rc"
-      - "C:/Program Files (x86)/TaskForge/rc.com"
-      - "C:/Program Files (x86)/TaskForge/rc.exe"
-      - "C:/Program Files (x86)/TaskForge/rc"
-    found: false
-    search_context:
-      ENV{PATH}:
-        - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
-        - "C:\\WINDOWS\\system32"
-        - "C:\\WINDOWS"
-        - "C:\\WINDOWS\\System32\\Wbem"
-        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\WINDOWS\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
-        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\marek\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\marek\\AppData\\Local\\spicetify"
-        - "C:\\Users\\marek\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
-        - "C:\\msys64\\ucrt64\\bin"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/TaskForge"
-      CMAKE_SYSTEM_PREFIX_PATH:
-        - "C:/Program Files"
-        - "C:/Program Files (x86)"
-        - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/TaskForge"
   -
     kind: "try_compile-v1"
     backtrace:
@@ -822,8 +470,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-ahqulf"
-      binary: "C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-ahqulf"
+      source: "C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-xp21g8"
+      binary: "C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-xp21g8"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -832,34 +480,34 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-ahqulf'
+        Change Dir: 'C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-xp21g8'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_e492d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_3d0a1.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.18+a338add32 for .NET Framework
-        Build started 7/31/2025 8:46:56 PM.
+        Build started 7/31/2025 8:59:17 PM.
         
-        Project "C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ahqulf\\cmTC_e492d.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xp21g8\\cmTC_3d0a1.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_e492d.dir\\Debug\\".
+          Creating directory "cmTC_3d0a1.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ahqulf\\Debug\\".
-          Creating directory "cmTC_e492d.dir\\Debug\\cmTC_e492d.tlog\\".
+          Creating directory "C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xp21g8\\Debug\\".
+          Creating directory "cmTC_3d0a1.dir\\Debug\\cmTC_3d0a1.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_e492d.dir\\Debug\\cmTC_e492d.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_e492d.dir\\Debug\\cmTC_e492d.tlog\\unsuccessfulbuild".
+          Creating "cmTC_3d0a1.dir\\Debug\\cmTC_3d0a1.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_3d0a1.dir\\Debug\\cmTC_3d0a1.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_e492d.dir\\Debug\\\\" /Fd"cmTC_e492d.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_3d0a1.dir\\Debug\\\\" /Fd"cmTC_3d0a1.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35213 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_e492d.dir\\Debug\\\\" /Fd"cmTC_e492d.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_3d0a1.dir\\Debug\\\\" /Fd"cmTC_3d0a1.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ahqulf\\Debug\\cmTC_e492d.exe" /INCREMENTAL /ILK:"cmTC_e492d.dir\\Debug\\cmTC_e492d.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-ahqulf/Debug/cmTC_e492d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-ahqulf/Debug/cmTC_e492d.lib" /MACHINE:X64  /machine:x64 cmTC_e492d.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_e492d.vcxproj -> C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ahqulf\\Debug\\cmTC_e492d.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xp21g8\\Debug\\cmTC_3d0a1.exe" /INCREMENTAL /ILK:"cmTC_3d0a1.dir\\Debug\\cmTC_3d0a1.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-xp21g8/Debug/cmTC_3d0a1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-xp21g8/Debug/cmTC_3d0a1.lib" /MACHINE:X64  /machine:x64 cmTC_3d0a1.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_3d0a1.vcxproj -> C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xp21g8\\Debug\\cmTC_3d0a1.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_e492d.dir\\Debug\\cmTC_e492d.tlog\\unsuccessfulbuild".
-          Touching "cmTC_e492d.dir\\Debug\\cmTC_e492d.tlog\\cmTC_e492d.lastbuildstate".
-        Done Building Project "C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ahqulf\\cmTC_e492d.vcxproj" (default targets).
+          Deleting file "cmTC_3d0a1.dir\\Debug\\cmTC_3d0a1.tlog\\unsuccessfulbuild".
+          Touching "cmTC_3d0a1.dir\\Debug\\cmTC_3d0a1.tlog\\cmTC_3d0a1.lastbuildstate".
+        Done Building Project "C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xp21g8\\cmTC_3d0a1.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
@@ -905,8 +553,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-nyp5r9"
-      binary: "C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-nyp5r9"
+      source: "C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-9diebh"
+      binary: "C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-9diebh"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -916,40 +564,40 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-nyp5r9'
+        Change Dir: 'C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-9diebh'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_6b417.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_aaa27.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.18+a338add32 for .NET Framework
-        Build started 7/31/2025 8:46:58 PM.
+        Build started 7/31/2025 8:59:18 PM.
         
-        Project "C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyp5r9\\cmTC_6b417.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9diebh\\cmTC_aaa27.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_6b417.dir\\Debug\\".
+          Creating directory "cmTC_aaa27.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyp5r9\\Debug\\".
-          Creating directory "cmTC_6b417.dir\\Debug\\cmTC_6b417.tlog\\".
+          Creating directory "C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9diebh\\Debug\\".
+          Creating directory "cmTC_aaa27.dir\\Debug\\cmTC_aaa27.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_6b417.dir\\Debug\\cmTC_6b417.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_6b417.dir\\Debug\\cmTC_6b417.tlog\\unsuccessfulbuild".
+          Creating "cmTC_aaa27.dir\\Debug\\cmTC_aaa27.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_aaa27.dir\\Debug\\cmTC_aaa27.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_6b417.dir\\Debug\\\\" /Fd"cmTC_6b417.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_aaa27.dir\\Debug\\\\" /Fd"cmTC_aaa27.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35213 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_6b417.dir\\Debug\\\\" /Fd"cmTC_6b417.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_aaa27.dir\\Debug\\\\" /Fd"cmTC_aaa27.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyp5r9\\Debug\\cmTC_6b417.exe" /INCREMENTAL /ILK:"cmTC_6b417.dir\\Debug\\cmTC_6b417.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-nyp5r9/Debug/cmTC_6b417.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-nyp5r9/Debug/cmTC_6b417.lib" /MACHINE:X64  /machine:x64 cmTC_6b417.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_6b417.vcxproj -> C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyp5r9\\Debug\\cmTC_6b417.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9diebh\\Debug\\cmTC_aaa27.exe" /INCREMENTAL /ILK:"cmTC_aaa27.dir\\Debug\\cmTC_aaa27.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-9diebh/Debug/cmTC_aaa27.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/marek/source/TaskForge/TaskForge/build/CMakeFiles/CMakeScratch/TryCompile-9diebh/Debug/cmTC_aaa27.lib" /MACHINE:X64  /machine:x64 cmTC_aaa27.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_aaa27.vcxproj -> C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9diebh\\Debug\\cmTC_aaa27.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_6b417.dir\\Debug\\cmTC_6b417.tlog\\unsuccessfulbuild".
-          Touching "cmTC_6b417.dir\\Debug\\cmTC_6b417.tlog\\cmTC_6b417.lastbuildstate".
-        Done Building Project "C:\\Users\\marek\\source\\repos\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyp5r9\\cmTC_6b417.vcxproj" (default targets).
+          Deleting file "cmTC_aaa27.dir\\Debug\\cmTC_aaa27.tlog\\unsuccessfulbuild".
+          Touching "cmTC_aaa27.dir\\Debug\\cmTC_aaa27.tlog\\cmTC_aaa27.lastbuildstate".
+        Done Building Project "C:\\Users\\marek\\source\\TaskForge\\TaskForge\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9diebh\\cmTC_aaa27.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.18
+        Time Elapsed 00:00:01.16
         
       exitCode: 0
   -

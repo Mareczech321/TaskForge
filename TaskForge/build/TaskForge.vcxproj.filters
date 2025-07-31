@@ -15,11 +15,31 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\marek\source\repos\TaskForge\TaskForge\include\colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\marek\source\repos\TaskForge\TaskForge\include\commands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\marek\source\repos\TaskForge\TaskForge\include\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\marek\source\repos\TaskForge\TaskForge\include\Task.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\marek\source\repos\TaskForge\TaskForge\include\TaskManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <CustomBuild Include="C:\Users\marek\source\repos\TaskForge\TaskForge\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{995E4F82-A3F5-3FD4-8FEE-7214E05225B3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{93602613-8016-391F-9E96-5C67B05BDDDE}</UniqueIdentifier>
+      <UniqueIdentifier>{A850B12F-E0A9-37F3-875E-C276BA8931AD}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
