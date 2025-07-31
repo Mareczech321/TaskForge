@@ -14,6 +14,16 @@ endif()
 # Include directory
 include_directories(include)
 
+# Header files
+set(HEADERS
+    include/CLIHandler.h
+    include/colors.h
+    include/commands.h
+    include/json.hpp
+    include/Task.h
+    include/TaskManager.h
+)
+
 # Source files
 set(SOURCES
     main.cpp
