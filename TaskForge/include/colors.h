@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef COLORS_H
-#define COLORS_H
-
 #include <string>
 #include <iostream>
 #include <unordered_map>
@@ -57,5 +54,3 @@ void Color(const T& text, const std::string& color, bool warning = false) {
     }
     cout << colorMap["white"];
 }
-
-#endif

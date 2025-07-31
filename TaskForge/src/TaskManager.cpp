@@ -2,7 +2,7 @@
 
 #include "../include/TaskManager.h"
 #include "../include/Task.h"
-#include "json.hpp"
+#include "../include/json.hpp"
 #include "../include/colors.h"
 
 #include <string>
@@ -13,6 +13,9 @@
 #include <sstream>
 #include <limits>
 #include <tuple>
+#include <ctime>
+#include <iomanip>
+#include <algorithm>
 
 using namespace std;
 using json = nlohmann::json;
@@ -21,6 +24,7 @@ fstream gConfig;
 
 bool endsWith(const string& fullString, const string& ending);
 bool isFileEmpty(std::fstream& file);
+bool parseDateToTimeT(const std::string& date_str, std::time_t& out_time);
 
 
 TaskMNGR::TaskMNGR() {
@@ -61,10 +65,10 @@ void TaskMNGR::addTask() {
     }
 
     Color("Enter description of new task:\n> ", "bright_green");
-    getline(cin, description);
+    std::getline(cin, description);
 
     Color("Enter due date of new task:\n> ", "bright_green");
-    getline(cin, dueDate);
+    std::getline(cin, dueDate);
 
     Color("Enter priority of new task (number):\n> ", "bright_green");
     while (!(cin >> priority)) {
@@ -75,9 +79,9 @@ void TaskMNGR::addTask() {
     cin.ignore();
 
     Color("Enter up to 3 tags (comma-separated):\n> ", "bright_green");
-    getline(cin, input);
+    std::getline(cin, input);
     istringstream iss(input);
-    while (getline(iss, tag, ',')) {
+    while (std::getline(iss, tag, ',')) {
         if (!tag.empty()) tags.push_back(tag);
         if (tags.size() == 3) break;
     }
@@ -108,7 +112,7 @@ void TaskMNGR::addTask() {
     }
 }
 
-void TaskMNGR::listTasks() {
+void TaskMNGR::listTasks(string sort, string order) {
     string folderPath, fileName, confirm;
     json jsonFile;
     fs::path fullPath;
@@ -135,6 +139,48 @@ void TaskMNGR::listTasks() {
     if (!fs::exists(fullPath)) {
         Color("File does not exist.\n", "red", true);
         return;
+    }
+
+    if (sort == "due") {
+        if (order == "asc" || order == "ascending") {
+            std::sort(tasks.begin(), tasks.end(), [](const Task& a, const Task& b) {
+                std::time_t ta, tb;
+                bool parsedA = parseDateToTimeT(a.getDueDate(), ta);
+                bool parsedB = parseDateToTimeT(b.getDueDate(), tb);
+
+                if (!parsedA && !parsedB) return false;
+                if (!parsedA) return false;
+                if (!parsedB) return true;
+
+                return ta < tb;
+                });
+        }
+        else if (order == "desc" || order == "descending") {
+            std::sort(tasks.begin(), tasks.end(), [](const Task& a, const Task& b) {
+                std::time_t ta, tb;
+                bool parsedA = parseDateToTimeT(a.getDueDate(), ta);
+                bool parsedB = parseDateToTimeT(b.getDueDate(), tb);
+
+                if (!parsedA && !parsedB) return false;
+                if (!parsedA) return false;
+                if (!parsedB) return true;
+
+                return ta > tb;
+                });
+        }
+    }else if (sort == "priority") {
+        if (order == "desc" || order == "descending") {
+            std::sort(tasks.begin(), tasks.end(), [](const Task& a, const Task& b) {
+                return a.getPriority() > b.getPriority();
+                });
+        }
+        if (order == "asc" || order == "ascending") {
+            std::sort(tasks.begin(), tasks.end(), [](const Task& a, const Task& b) {
+                return a.getPriority() < b.getPriority();
+                });
+        }
+    }else if (sort != "priority" || sort != "due") {
+		Color("Invalid sort option. Use 'due' or 'priority'.\n", "red", true);
     }
 
     Color("------------------------\n", "yellow");
@@ -202,7 +248,7 @@ int TaskMNGR::editTask(int id) {
                 Color("[4] Tags\n> ", "bright_green");
 
                 string choiceInput;
-                getline(cin, choiceInput);
+                std::getline(cin, choiceInput);
                 try {
                     temp = stoi(choiceInput);
                 }
@@ -214,19 +260,19 @@ int TaskMNGR::editTask(int id) {
             switch (temp) {
             case 1:
                 Color("Enter new description:\n> ", "magenta");
-                getline(cin, tempStr);
+                std::getline(cin, tempStr);
                 task.setDescription(tempStr);
                 break;
 
             case 2:
                 Color("Enter new due date:\n> ", "magenta");
-                getline(cin, tempStr);
+                std::getline(cin, tempStr);
                 task.setDueDate(tempStr);
                 break;
 
             case 3:
                 Color("Enter new priority:\n> ", "cyan");
-                getline(cin, tempStr);
+                std::getline(cin, tempStr);
                 try {
                     temp2 = stoi(tempStr);
                     task.setPriority(temp2);
@@ -238,11 +284,11 @@ int TaskMNGR::editTask(int id) {
 
             case 4:
                 Color("Enter new tags (comma-separated, max 3):\n> ", "bright_green");
-                getline(cin, tempStr);
+                std::getline(cin, tempStr);
                 tags.clear();
                 {
                     istringstream iss(tempStr);
-                    while (getline(iss, tag, ',')) {
+                    while (std::getline(iss, tag, ',')) {
                         if (!tag.empty()) tags.push_back(tag);
                         if (tags.size() == 3) break;
                     }
@@ -462,7 +508,7 @@ std::tuple<std::vector<Task>, std::filesystem::path, json> TaskMNGR::loadFile(fs
 
     if (isFileEmpty("config.cfg")) {
         Color("Is the file in the same folder as this .exe file? (Y/N):\n> ", "red");
-        getline(cin, confirm);
+        std::getline(cin, confirm);
 
         if (confirm == "Y" || confirm == "y") {
             Color("Proceeding...\n", "white");
@@ -470,11 +516,11 @@ std::tuple<std::vector<Task>, std::filesystem::path, json> TaskMNGR::loadFile(fs
         }
         else {
             Color("Specify the path:\n> ", "yellow");
-            getline(cin, folderPath);
+            std::getline(cin, folderPath);
         }
 
         Color("Enter the file name:\n> ", "blue");
-        getline(cin, fileName);
+        std::getline(cin, fileName);
         if (!endsWith(fileName, ".json")) {
             fileName += ".json";
         }
@@ -487,7 +533,7 @@ std::tuple<std::vector<Task>, std::filesystem::path, json> TaskMNGR::loadFile(fs
         }
 
         Color("Enter the file name:\n> ", "blue");
-        getline(cin, fileName);
+        std::getline(cin, fileName);
         if (!endsWith(fileName, ".json")) {
             fileName += ".json";
         }
@@ -592,4 +638,26 @@ std::string TaskMNGR::getFolderPathFromConfig() {
 bool TaskMNGR::isFileEmpty(const std::string& filename) {
     std::ifstream file(filename, std::ios::ate);
     return file.tellg() == 0;
+}
+
+bool parseDateToTimeT(const std::string& date_str, std::time_t& out_time) {
+    std::tm tm = {};
+    const char* formats[] = {
+        "%Y-%m-%d", "%d-%m-%Y", "%m-%d-%Y",
+        "%Y/%m/%d", "%d/%m/%Y", "%m/%d/%Y",
+        "%Y.%m.%d", "%d.%m.%Y", "%m.%d.%Y"
+    };
+
+    for (const char* fmt : formats) {
+        memset(&tm, 0, sizeof(tm));
+        std::istringstream ss(date_str);
+        ss >> std::get_time(&tm, fmt);
+        if (!ss.fail()) {
+            tm.tm_hour = 0; tm.tm_min = 0; tm.tm_sec = 0;
+            out_time = std::mktime(&tm);
+            if (out_time != -1) return true;
+        }
+    }
+
+    return false;
 }

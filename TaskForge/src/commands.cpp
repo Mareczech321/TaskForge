@@ -69,7 +69,7 @@ void Commands() {
 		case help:
 			Color("Available commands:\n", "bright_yellow");
 			Color("  add    - Add a new task\n", "green");
-			Color("  list   - List all tasks\n", "yellow");
+			Color("  list   - List all tasks. Or sort them by (due or priority, default - id) using '--sort | <due / priority>', use 'desc' / 'descending' or 'asc' / 'ascending' to change the order of the tasks.\n", "yellow");
 			Color("  edit <id> - Edit a task by ID\n", "magenta");
 			Color("  del <id>  - Delete a task by ID\n", "red");
 			Color("  path <folder path / reset>   - Sets / resets the default file path for tasks\n", "blue");
@@ -84,7 +84,17 @@ void Commands() {
 
 		case ls:
 			Color("Listing all tasks...\n", "yellow");
-			TaskManager.listTasks();
+			if (tokens.size() > 4 || tokens.size() == 2 || (tokens.size() == 3 && tokens[1] != "--sort")) {
+				Color("Usage: list [--sort <due / priority>] [asc / desc]\n", "red");
+				break;
+			}else if (tokens.size() == 4 && tokens[1] == "--sort") {
+				TaskManager.listTasks(tokens[2], tokens[3]);
+			}
+			else if (tokens.size() == 3 && tokens[1] == "--sort") {
+				TaskManager.listTasks(tokens[2]);
+			}else {
+				TaskManager.listTasks();
+			}
 			break;
 
 		case edit:

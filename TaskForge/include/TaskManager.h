@@ -1,15 +1,13 @@
 #pragma once
 
-#ifndef TASKMNGR_H
-#define TASKMNGR_H
-
 #include <iostream>
 #include <vector>
 #include "Task.h"
 #include <tuple>
-#include "../src/json.hpp"
+#include "json.hpp"
 #include <filesystem>
-#include <fstream>;
+#include <fstream>
+#include <string>
 
 extern std::fstream gConfig;
 
@@ -20,7 +18,7 @@ class TaskMNGR {
 		void addTask();
 		int editTask(int id);
 		int deleteTask(int id);
-		void listTasks();
+		void listTasks(std::string sort = "id", std::string order = "asc");
 		std::tuple<std::vector<Task>, std::filesystem::path, nlohmann::json> loadFile(std::filesystem::path folderPath2 = std::filesystem::current_path());
 		std::fstream saveFile(std::filesystem::path folderPath = std::filesystem::current_path());
 		std::string getFolderPathFromConfig();
@@ -31,5 +29,3 @@ class TaskMNGR {
 	private:
 		std::vector<Task> tasks;
 };
-
-#endif

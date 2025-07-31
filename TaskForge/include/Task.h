@@ -1,9 +1,8 @@
-#ifndef TASK_H
-#define TASK_H
+#pragma once
 
 #include <string>
 #include <vector>
-#include "../src/json.hpp"
+#include "json.hpp"
 
 class Task {
 
@@ -39,8 +38,6 @@ class Task {
 
 		bool operator==(const Task& other) const;
 
-
-
 	private:
 		int id;
 		std::string description;
@@ -48,6 +45,3 @@ class Task {
 		std::string dueDate;
 		int priority;
 };
-
-
-#endif
