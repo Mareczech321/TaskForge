@@ -1,0 +1,3 @@
+C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/TaskForge.dir
+C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/marek/source/repos/TaskForge/TaskForge/build/CMakeFiles/ZERO_CHECK.dir
