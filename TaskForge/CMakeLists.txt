@@ -1,28 +1,12 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.14)
 project(TaskForge)
 
+# Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Helpful compiler warnings
-if (MSVC)
-    add_compile_options(/W4 /permissive-)
-else()
-    add_compile_options(-Wall -Wextra -pedantic)
-endif()
-
-# Include directory
+# Include directories
 include_directories(include)
-
-# Header files
-set(HEADERS
-    include/CLIHandler.h
-    include/colors.h
-    include/commands.h
-    include/json.hpp
-    include/Task.h
-    include/TaskManager.h
-)
 
 # Source files
 set(SOURCES
@@ -32,10 +16,20 @@ set(SOURCES
     src/TaskManager.cpp
 )
 
-# Define the executable
-add_executable(TaskForge ${SOURCES})
+# Header files (for IDE visibility)
+set(HEADERS
+    include/CLIHandler.h
+    include/colors.h
+    include/commands.h
+    include/json.hpp
+    include/Task.h
+    include/TaskManager.h
+)
 
-# Link stdc++fs for older GCC versions (optional for GCC 9+)
-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_link_libraries(TaskForge stdc++fs)
+# Create executable
+add_executable(TaskForge ${SOURCES} ${HEADERS})
+
+# Platform-specific: Enable virtual terminal processing for Windows (optional)
+if (WIN32)
+    add_definitions(-D_USE_ANSI_COLORS)
 endif()
