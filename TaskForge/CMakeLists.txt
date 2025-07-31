@@ -18,7 +18,6 @@ set(SOURCES
 
 # Header files (for IDE visibility)
 set(HEADERS
-    include/CLIHandler.h
     include/colors.h
     include/commands.h
     include/json.hpp
