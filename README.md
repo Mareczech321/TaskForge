@@ -88,10 +88,11 @@ Launch the program:
 Then use the interactive CLI to manage your tasks:
 
 ~~~bash
+TaskForge >> help
 TaskForge >> add
 TaskForge >> list
 TaskForge >> edit
-TaskForge >> del
+TaskForge >> delete
 TaskForge >> search
 TaskForge >> quit
 ~~~
